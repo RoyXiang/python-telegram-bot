@@ -32,6 +32,7 @@ import urllib3 as urllib3
 import urllib3.contrib.appengine as appengine
 from urllib3.connection import HTTPConnection
 from urllib3.util.timeout import Timeout
+from w3lib.url import safe_download_url
 
 from telegram import (InputFile, TelegramError)
 from telegram.error import (Unauthorized, NetworkError, TimedOut, BadRequest, ChatMigrated,
@@ -276,6 +277,6 @@ class Request(object):
             The filename within the path to download the file.
 
         """
-        buf = self.retrieve(url, timeout=timeout)
+        buf = self.retrieve(safe_download_url(url), timeout=timeout)
         with open(filename, 'wb') as fobj:
             fobj.write(buf)

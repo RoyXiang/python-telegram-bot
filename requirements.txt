@@ -1,3 +1,4 @@
 certifi
 future>=0.15.2
 urllib3
+w3lib
